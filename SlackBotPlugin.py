@@ -14,7 +14,7 @@ def announce(message, something):
     subprocess.call([EXEC_ANNOUNCE, something])
 
 # !announce_if_in_time hh-hh hh-hh時間内なら指定メッセージを発話する
-@respond_to('^!announce_if_in_time ([0-2][0-9]-[0-2][0-9]) (.*)')
+@respond_to('^!announce_if_in_time ([0-2]{0,1}[0-9]-[0-2][0-9]) (.*)')
 def announce_if_in_time(message, time, something):
     # TODO: 時刻の解析
     in_time = True
