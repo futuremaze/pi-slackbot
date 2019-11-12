@@ -9,5 +9,5 @@ default_reply = 'すみません、よくわかりません。'
 
 # プラグインを記述するパッケージ名のリスト
 PLUGINS = [
-    'plugins',
+    'SlackBotPlugin',
 ]
