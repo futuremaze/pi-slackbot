@@ -1,0 +1,11 @@
+[Unit]
+Description = slackbot サービス
+
+[Service]
+ExecStart = /usr/bin/python3 /usr/local/pi-slackbot/bin/run.py
+# 再起動設定
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target

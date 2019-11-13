@@ -36,6 +36,12 @@ function main() {
   # スクリプトのインストール
   sudo mkdir -p ${INSTALL_DIR}
   sudo cp -R ./bin ${INSTALL_DIR}/
+
+  # Service の設定
+  sudo cp ./pi-slackbot.service /etc/systemd/system/
+  sudo systemctl list-unit-files --type=service | grep pi-slackbot
+  sudo systemctl enable pi-slackbot.service
+  sudo systemctl start pi-slackbot.service
 }
 
 # EXIT時にcleanup実行
