@@ -12,6 +12,7 @@ EXEC_ANNOUNCE = "/usr/share/pi-jtalk/bin/announce.sh"
 @respond_to('^!announce (.*)')
 def announce(message, something):
     subprocess.call([EXEC_ANNOUNCE, something])
+    message.reply("メッセージを再生しました")
 
 # !announce_if_in_time hh-hh hh-hh時間内なら指定メッセージを発話する
 @respond_to('^!announce_if_in_time ([0-2]{0,1}[0-9]-[0-2][0-9]) (.*)')
