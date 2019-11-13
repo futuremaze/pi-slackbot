@@ -1,0 +1,17 @@
+--- /usr/local/lib/python3.7/site-packages/slackbot/dispatcher_old.py	2019-11-13 22:27:14.000000000 +0900
++++ /usr/local/lib/python3.7/site-packages/slackbot/dispatcher.py	2019-11-13 22:29:02.000000000 +0900
+@@ -48,7 +48,13 @@ class MessageDispatcher(object):
+
+     def _dispatch_msg_handler(self, category, msg):
+         responded = False
+-        for func, args in self._plugins.get_plugins(category, msg.get('text', None)):
++        text = None
++        if 'text' in msg:
++            text = msg.get('text', None)
++        elif 'attachments' in msg and len(msg.get('attachments')) > 0:
++            text = msg['attachments'][0].get('text', None)
++
++        for func, args in self._plugins.get_plugins(category, text):
+             if func:
+                 responded = True
+                 try:
