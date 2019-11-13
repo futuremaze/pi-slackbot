@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # bashのスイッチ
-set -euC
+set -euCx
 
 # カレントディレクトリの移動
 cd $(dirname $0)
@@ -10,7 +10,7 @@ cd $(dirname $0)
 # source ./setting.inc
 
 # グローバル定数
-readonly INSTALL_DIR="/usr/share/pi-slackbot"
+readonly INSTALL_DIR="/usr/local/pi-slackbot"
 
 #
 # 関数定義
@@ -26,12 +26,12 @@ function main() {
     python3-pip \
     python3-dev
 
-  sudo pip3 install --upgrade pip3
+  sudo pip3 install --upgrade pip
   sudo pip3 install slackbot
 
   # パッチ適用
   SLACKBOT_DIR="$(pip3 show slackbot | grep Location: | sed -e 's/^Location: //g')/slackbot"
-  patch -u ${SLACKBOT_DIR}/dispatcher.py < ./dispatcher.py.patch
+  sudo patch -u ${SLACKBOT_DIR}/dispatcher.py < ./dispatcher.py.patch
 
   # スクリプトのインストール
   sudo mkdir -p ${INSTALL_DIR}
